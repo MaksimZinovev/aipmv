@@ -6,52 +6,30 @@ import * as vscode from 'vscode';
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "gpt-prompt-editor" is now active!');
+    // Use the console to output diagnostic information (console.log) and errors (console.error)
+    // This line of code will only be executed once when your extension is activated
+    console.log('Congratulations, your extension "gpt-prompt-editor" is now active!');
+    let disposable = vscode.commands.registerCommand('gpt-prompt-editor.helloWorld', () => {
+        // The code you place here will be executed every time your command is executed
+        // Display a message box to the user
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('gpt-prompt-editor.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		areadAllFilePaths();
-		vscode.window.showInformationMessage('Hello World from GPT Prompt Editor!');
-	});
-
-	context.subscriptions.push(disposable);
-}
-
-// Find files 
-
-function readAllFilePaths(): string[] {
-    const workspaceFolders = vscode.workspace.workspaceFolders;
-    const filePaths: string[] = [];
-
-    if (workspaceFolders) {
-        console.log(`workspaceFolders: ${JSON.stringify(workspaceFolders)}`);
-
-
-            // const curatedFolder = vscode.Uri.joinPath(folder.uri, 'snippets/curated');
-			
-            const pattern = '**/snippets/curated**/*.md';
-            const files = vscode.workspace.findFiles(pattern, '**/node_modules/**');
-			
-            files.then((fileUris: vscode.Uri[]) => {
-				console.log(`files: ${  files}`);
-                for (const uri of fileUris) {
-                    filePaths.push(uri.fsPath);
+        const snippetPromise = selectSnippet();
+        if (snippetPromise) {
+            snippetPromise.then(snippet => {
+                if (snippet !== undefined) {
+                    insertSnippet(snippet as string);
                 }
             });
-    }
+        }
+        // vscode.window.showInformationMessage('Hello World from GPT Prompt Editor!');
+    });
 
-    const paths = Array.from(new Set(filePaths));
-    console.log(`paths: ${paths}`);
-    return paths;
+    context.subscriptions.push(disposable);
 }
 
-async function areadAllFilePaths(): Promise<string[]> {
+// Find md files under snippets/curated folder 
+
+async function readAllFilePaths(): Promise<string[]> {
     const workspaceFolders = vscode.workspace.workspaceFolders;
     const filePaths: string[] = [];
 
@@ -72,5 +50,39 @@ async function areadAllFilePaths(): Promise<string[]> {
 }
 
 
+// Show quickPick to select file
+
+async function selectSnippet(): Promise<string | undefined> {
+
+    const paths = await readAllFilePaths();
+    const items = [];
+
+    for (const uri of paths) {
+        const relativePath = vscode.workspace.asRelativePath(uri);
+        items.push(relativePath.split('curated/').slice(-1)[0]);
+    }
+    const snippet = await vscode.window.showQuickPick(items, { placeHolder: 'Select snippet.' });
+
+    console.log(`snippet: ${snippet}`);
+    if (snippet) {
+        vscode.window.showInformationMessage(`Selected: ${snippet}`);
+        console.log(`snippet: none`);
+        return snippet;
+    }
+    else {
+        console.log(`snippet: none`);
+    };
+}
+
+// Insert selected snippet 
+
+async function insertSnippet(snippet: string) {
+    await vscode.window.activeTextEditor?.insertSnippet(new vscode.SnippetString(snippet));
+}
+//        
+
+
+
+
 // This method is called when your extension is deactivated
-export function deactivate() {}
+export function deactivate() { }

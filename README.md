@@ -1,71 +1,70 @@
-# gpt-prompt-editor README
+# VS Code Prompt Editor
 
-This is the README for your extension "gpt-prompt-editor". After writing up a brief description, we recommend including the following sections.
+The Prompt Editor is a powerful VS Code extension for effortless management of AI prompts, enabling seamless import, search, organization, insertion, editing, and reuse of prompt snippets.
+
+## Overview
+
+The extension is built using TypeScript and integrates with the Visual Studio Code API for editor interaction, UI creation, and file operations. It provides a keyboard-driven user interface inspired by the Raycast app for efficient prompt management. The extension does not require any external API integration or custom API usage.
+
+The project structure includes:
+
+- `src/extension.ts`: The main extension code.
+- `src/test/extension.test.ts`: Extension tests.
+- `data/prompts.json`: Centralized metadata for curated prompts.
+- `prompts/curated/`: Folder for curated prompts with metadata.
+- `prompts/raw/`: Folder for importing raw prompts from text files.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+1. Intuitive keyboard-driven interface for efficient prompt handling.
+2. Advanced search capabilities for finding prompts by name, type, tags, and other metadata.
+3. Metadata management tools for organizing, tagging, and categorizing prompts.
+4. Easy import of prompts from raw text files into a curated library.
+5. Integration with Visual Studio Code for seamless insertion of prompts into the editor.
 
-For example if there is an image subfolder under your extension project workspace:
+## Getting started
 
-\!\[feature X\]\(images/feature-x.png\)
+### Requirements
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+- Visual Studio Code
+- Node.js (for extension development)
 
-## Requirements
+### Quickstart
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+1. Clone the repository or download the extension files.
+2. Open the project folder in Visual Studio Code.
+3. Run the `npm install` command to install dependencies.
+4. Press `F5` to launch the extension in the VS Code Extension Host.
+5. Use the keyboard-driven interface to manage and insert prompts.
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
 This extension contributes the following settings:
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+* `promptEditor.enable`: Enable/disable this extension.
+* `promptEditor.showRawPrompts`: Show raw prompts in the search results.
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+- Prompt insertion may not work correctly in certain file types or programming languages.
+- Large prompt libraries may impact performance.
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
-
 ### 1.0.0
 
-Initial release of ...
+Initial release of the Prompt Editor VS Code extension.
 
 ### 1.0.1
 
-Fixed issue #.
+- Fixed issue with prompt insertion in Python files.
+- Improved search performance for large prompt libraries.
 
 ### 1.1.0
 
-Added features X, Y, and Z.
+- Added support for importing prompts from URLs.
+- Introduced a new "Favorites" section for frequently used prompts.
 
----
+### License
 
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+Copyright (c) 2024.
