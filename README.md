@@ -41,8 +41,17 @@ The project structure includes:
 
 This extension contributes the following settings:
 
-* `promptEditor.enable`: Enable/disable this extension.
-* `promptEditor.showRawPrompts`: Show raw prompts in the search results.
+- `promptEditor.enable`: Enable/disable this extension.
+- `promptEditor.showRawPrompts`: Show raw prompts in the search results.
+
+## Roadmap
+
+- [x] Search prompt by path
+- [ ] Search and insert prompt from external file
+- [ ] Search prompt by type
+- [ ] Search and filter by tags
+- [ ] Trigger and insert prompt inline in editor
+- [ ] Build prompt using multiple blocks
 
 ## Known Issues
 
@@ -57,13 +66,7 @@ Initial release of the Prompt Editor VS Code extension.
 
 ### 1.0.1
 
-- Fixed issue with prompt insertion in Python files.
-- Improved search performance for large prompt libraries.
-
-### 1.1.0
-
-- Added support for importing prompts from URLs.
-- Introduced a new "Favorites" section for frequently used prompts.
+- Added search prompt by path.
 
 ### License
 
