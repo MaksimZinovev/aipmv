@@ -1,0 +1,51 @@
+digraph G {
+
+  node[style=filled, color=lightgray];
+  edge[color=blue];
+
+  subgraph cluster_thinking {
+    node[shape=box, style=filled, color=lightskyblue];
+    label = "Состояние Мышления";
+    objectivity[label="Объективное Описание Ситуации"];
+    non_judgement[label="Непредвзятый Настрой"];
+    reality_acceptance[label="Принятие Реальности"];
+  }
+
+  subgraph cluster_suffering {
+    node[shape=ellipse, style=filled, color=lightpink];
+    label = "Состояние Страдания";
+    idealized_expectations[label="Идеализированные Ожидания"];
+    reality_resistance[label="Сопротивление Реальности", color=red];
+    vulnerability_denial[label="Отрицание Уязвимости"];
+    emotion_suppression[label="Подавление Эмоций"];
+    limited_life[label="Ограниченный Жизненный Опыт"];
+    pain_anger_tears[label="Боль, Гнев и Слезы"];
+  }
+
+  subgraph cluster_insights {
+    node[shape=note, style=filled, color="#21a021"];
+    label = "Озарения";
+    insight1[label="Мышление требует непредвзятости"];
+    insight2[label="Боль возникает из разрыва реальность/идеалы"];
+    insight3[label="Принятие эмоций позволяет влиять"];
+    insight4[label="Отпускание контроля ведет к принятию"];
+    insight5[label="Подавление эмоций ограничивает опыт"];
+    insight6[label="Объективное описание предшествует пониманию"];
+    insight7[label="Самонавязанный 'ад' из-за сопротивления реальности"];
+    insight8[label="Принятие через осознание ограничений"];
+    insight9[label="Чрезмерные идеалы порождают боль и гнев"];
+  }
+
+  objectivity -> non_judgement[color="#36414f"];
+  non_judgement -> reality_acceptance[color=green];
+
+  idealized_expectations -> reality_resistance[color=red];
+  reality_resistance -> vulnerability_denial[color=red];
+  vulnerability_denial -> emotion_suppression[color=red];
+  emotion_suppression -> limited_life[color=red];
+  limited_life -> pain_anger_tears[color=red];
+
+  {rank=same; objectivity non_judgement reality_acceptance}
+  {rank=same; idealized_expectations reality_resistance vulnerability_denial emotion_suppression limited_life pain_anger_tears}
+  {rank=same; insight1 insight2 insight3 insight4 insight5 insight6 insight7 insight8 insight9}
+}

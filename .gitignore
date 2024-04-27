@@ -1,6 +1,5 @@
 
 # Project files 
-.project/
 out
 dist
 node_modules
@@ -303,3 +302,4 @@ dist
 ## Local prompts
 
 /prompts/raw
+/graphviz
